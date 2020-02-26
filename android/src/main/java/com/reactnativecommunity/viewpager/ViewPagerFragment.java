@@ -25,7 +25,6 @@ public class ViewPagerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
         return ReactViewPagerManager.reactChildrenViews.get(getArguments().getInt(CHILD_VIEW_KEY));
     }
 

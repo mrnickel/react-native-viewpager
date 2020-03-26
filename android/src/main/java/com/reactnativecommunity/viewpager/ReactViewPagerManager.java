@@ -1,6 +1,6 @@
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
- *
+ * <p>
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
@@ -43,6 +43,7 @@ public class ReactViewPagerManager extends ViewGroupManager<ViewPager2> {
     private static final String REACT_CLASS = "RNCViewPager";
     private static final int COMMAND_SET_PAGE = 1;
     private static final int COMMAND_SET_PAGE_WITHOUT_ANIMATION = 2;
+    private static final int COMMAND_SET_SCROLL_ENABLED = 3;
     private EventDispatcher eventDispatcher;
     static SparseArray<View> reactChildrenViews = new SparseArray<>();
 
@@ -159,7 +160,9 @@ public class ReactViewPagerManager extends ViewGroupManager<ViewPager2> {
                 "setPage",
                 COMMAND_SET_PAGE,
                 "setPageWithoutAnimation",
-                COMMAND_SET_PAGE_WITHOUT_ANIMATION);
+                COMMAND_SET_PAGE_WITHOUT_ANIMATION,
+                "setScrollEnabled",
+                COMMAND_SET_SCROLL_ENABLED);
     }
 
     @Override
@@ -177,6 +180,10 @@ public class ReactViewPagerManager extends ViewGroupManager<ViewPager2> {
             case COMMAND_SET_PAGE_WITHOUT_ANIMATION: {
                 root.setCurrentItem(args.getInt(0), false);
                 eventDispatcher.dispatchEvent(new PageSelectedEvent(root.getId(), args.getInt(0)));
+                return;
+            }
+            case COMMAND_SET_SCROLL_ENABLED: {
+                root.setUserInputEnabled(args.getBoolean(0));
                 return;
             }
             default:

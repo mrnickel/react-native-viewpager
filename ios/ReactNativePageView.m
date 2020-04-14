@@ -286,7 +286,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
             if([subview isKindOfClass:UIScrollView.class]){
                 ((UIScrollView *)subview).delegate = self;
                 ((UIScrollView *)subview).keyboardDismissMode = _dismissKeyboard;
-                ((UIScrollView *)subview).delaysContentTouches = NO;
+                // ((UIScrollView *)subview).delaysContentTouches = NO;
             }
         }
         
